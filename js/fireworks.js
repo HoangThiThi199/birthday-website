@@ -47,7 +47,7 @@ function startFireworks() {
 
     function animate() {
         requestAnimationFrame(animate);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Tạo vệt sáng
+        ctx.fillStyle = 'rgba(255, 182, 193, 0.1)'; // Tạo vệt sáng
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         particles.forEach((particle, index) => {

@@ -8,7 +8,7 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #111;
+    background-color: #ffb6c1;
     color: white;
     overflow: hidden; /* Ẩn thanh cuộn */
 }
@@ -45,17 +45,23 @@ section {
 }
 
 /* Gift Screen */
-#gift-screen { z-index: 80; background-color: #15ca55;}
+#gift-screen { z-index: 80; background-color: transparent;}
 .gift-container { position: relative; cursor: pointer; }
-.gift-box img { width: 200px; }
+.gift-box img { width: 400px; }
 .glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); z-index: -1; }
 
 /* Birthday Scene */
-#birthday-scene { z-index: 70; background-color: #b85c5c; flex-direction: column;}
+#birthday-scene { z-index: 70; background-color: transparent; flex-direction: column;}
 canvas { position: absolute; top: 0; left: 0; z-index: 1;}
 .birthday-content { position: relative; z-index: 10; text-align: center; max-width: 800px; }
-.typing-container { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #ffb3b3; min-height: 150px; margin-bottom: 20px;}
-.gallery { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;}
+.typing-container { 
+    font-family: 'Lobster', cursive; /* Đổi sang phông chữ mới tại đây */
+    font-size: 3rem; /* Bạn có thể tăng thêm size ở đây nếu muốn chữ to hơn */
+    color: #ff0000; /* Thay mã màu cũ bằng #ff0000 (đây là màu đỏ tươi) */
+    min-height: 150px; 
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Thêm đổ bóng nhẹ để chữ nổi bật hơn trên nền */
+}.gallery { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;}
 .gallery-img { width: 150px; height: 150px; object-fit: cover; border-radius: 10px; border: 3px solid #ff4d4d; }
 
 /* --- CHỈNH TO CHỮ VÀ NÚT BẤM MÀN HÌNH INTRO --- */
@@ -95,8 +101,8 @@ canvas { position: absolute; top: 0; left: 0; z-index: 1;}
 }
 
 .book {
-    width: 250px; /* Chiều rộng ảnh */
-    height: 300px; /* Chiều cao ảnh */
+    width: 350px; /* Chiều rộng ảnh */
+    height: 450px; /* Chiều cao ảnh */
     position: relative;
     transform-style: preserve-3d;
 }
@@ -144,10 +150,11 @@ canvas { position: absolute; top: 0; left: 0; z-index: 1;}
     object-fit: cover; /* Cắt ảnh cho vừa khung mà không bị méo */
 }
 
-/* Sắp xếp lớp (Trang 1 nằm trên cùng) */
-#page1 { z-index: 3; }
-#page2 { z-index: 2; }
-#page3 { z-index: 1; }
+/* Cập nhật lại z-index */
+#page1 { z-index: 4; }
+#page2 { z-index: 3; }
+#page3 { z-index: 2; }
+#page4 { z-index: 1; } /* Trang mới nhất nằm dưới cùng */
 
 /* Dòng chữ hướng dẫn */
 .guide-text {
@@ -161,4 +168,55 @@ canvas { position: absolute; top: 0; left: 0; z-index: 1;}
     font-family: 'Dancing Script', cursive;
     font-size: 1.5rem;
     color: #ff4d4d;
+}
+#card-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    background: rgba(255, 255, 255, 0.5); /* Nền mờ ảo */
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 80%;
+    animation: zoomIn 0.5s ease-out; /* Hiệu ứng hiện ra */
+}
+
+#card-text {
+    font-family:'Nunito', sans-serif;
+    font-size: 2rem;
+    color: #ff4d4d;
+}
+
+@keyframes zoomIn { from { transform: scale(0); } to { transform: scale(1); } }
+#heart-btn {
+    background: none;
+    border: none;
+    font-size: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.3s;
+}
+
+#heart-btn:hover {
+    transform: scale(1.3); /* Phóng to khi di chuột vào */
+}
+.gift-instruction {
+    margin-top: 20px; /* Khoảng cách giữa ảnh và chữ */
+    font-family: 'Dancing Script', cursive; /* Hoặc font chữ bạn đang dùng */
+    font-size: 1.5rem;
+    color: #ff4d4d; /* Màu đỏ hồng cho cùng tông */
+    text-align: center;
+    animation: pulse 2s infinite; /* Thêm hiệu ứng nhấp nháy nhẹ cho thu hút */
+}
+
+/* Hiệu ứng nhấp nháy nhẹ */
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
 }

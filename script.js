@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const giftBox = document.getElementById('gift-box');
     const giftGlow = document.getElementById('gift-glow');
     const bgMusic = document.getElementById('bg-music');
-    const replayBtn = document.getElementById('replay-btn');
-
+    const replayBtn = document.querySelector('.open-gift-btn');
     // 1. Loading Screen (Giả lập loading 2s)
     setTimeout(() => {
         progress.style.width = '100%';
@@ -37,29 +36,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     });
 
-    // 3. Click vào hộp quà để mở
+  // 3. Click vào hộp quà để mở -> Hiện thiệp -> Hiện nút Trái tim -> Chờ click
     giftBox.addEventListener('click', () => {
         // Tắt rung, bật sáng
-        // giftBox.classList.remove('shake-animation');
         giftGlow.classList.remove('hidden');
         giftGlow.classList.add('fade-in');
         
-        // Chuyển sang màn hình chính
+        // Đợi 1.5 giây để hiệu ứng sáng lên
         setTimeout(() => {
-            giftScreen.classList.add('fade-out');
-            setTimeout(() => {
-                giftScreen.classList.add('hidden');
-                birthdayScene.classList.remove('hidden');
-                birthdayScene.classList.add('fade-in');
-                
-                // Kích hoạt các hiệu ứng (KHÔNG cần gọi phát nhạc ở đây nữa)
-                // startTypingEffect();
-                startFireworks();
-                startBalloonsAndHearts();
-            }, 1000);
+            giftScreen.classList.add('hidden'); // Ẩn màn hình hộp quà
+            
+            // Hiện tấm thiệp
+            const cardScreen = document.getElementById('card-screen');
+            cardScreen.classList.remove('hidden');
+            
+            // Chạy chữ trên thiệp
+            const textElement = document.getElementById('card-text');
+            const message = "Not enough time to polish it yet, so please enjoy this for now. ✨🥰";
+            let i = 0;
+            
+            function typeEffect() {
+                if (i < message.length) {
+                    textElement.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typeEffect, 70);
+                } else {
+                    // Chạy chữ xong -> Hiện nút Trái tim
+
+                    const heartBtn = document.getElementById('heart-btn');
+                    heartBtn.classList.remove('hidden');
+                    heartBtn.classList.add('fade-in'); // Thêm hiệu ứng hiện nhẹ nhàng nếu có
+                }
+            }
+            typeEffect();
         }, 1500);
     });
 
+    
+    // Thêm sự kiện riêng cho nút Trái tim để chuyển màn hình
+    document.getElementById('heart-btn').addEventListener('click', () => {
+        const cardScreen = document.getElementById('card-screen');
+        cardScreen.classList.add('hidden'); // Ẩn tấm thiệp
+        
+        birthdayScene.classList.remove('hidden');
+        birthdayScene.classList.add('fade-in');
+        
+        // Kích hoạt pháo hoa, bóng bay
+        startFireworks();
+        startBalloonsAndHearts();
+    });
     // 4. Nút Replay
     replayBtn.addEventListener('click', () => {
         location.reload(); // Tải lại trang từ đầu
