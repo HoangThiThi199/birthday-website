@@ -1,6 +1,6 @@
 function startTypingEffect() {
     // Thay \n bằng <br>
-    const text = "Happy Birthday Hương ❤️<br><br>May every day bring you happiness,<br>health, and success.<br>Never stop smiling!";
+    const text = "Happy Birthday Hương ❤️<br><br>This is your special day, and I hope you enjoy it to the fullest! Love and hugs!<br><br>May every day bring you happiness,<br>health, and success.<br>Never stop smiling!";
     const container = document.getElementById('typing-text');
     container.innerHTML = ""; // Đổi thành innerHTML
     
