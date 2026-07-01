@@ -1,0 +1,5 @@
+@media (max-width: 768px) {
+    .typing-container { font-size: 1.8rem; }
+    .gallery-img { width: 100px; height: 100px; }
+    h1 { font-size: 1.5rem; }
+}
