@@ -11,6 +11,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const giftGlow = document.getElementById('gift-glow');
     const bgMusic = document.getElementById('bg-music');
     const replayBtn = document.querySelector('.open-gift-btn');
+
+function createDeco() {
+    const container = document.getElementById('deco-container');
+    const symbols = ['🎈', '❤️']; // Bóng bay và trái tim
+    
+    for (let i = 0; i < 10; i++) {
+        const span = document.createElement('span');
+        const isBalloon = Math.random() > 0.5;
+        span.innerHTML = isBalloon ? '🎈' : '❤️';
+        span.className = isBalloon ? 'balloon' : 'heart';
+        
+        // Vị trí ngẫu nhiên
+        span.style.left = Math.random() * 100 + 'vw';
+        // Tốc độ ngẫu nhiên
+        span.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        
+        container.appendChild(span);
+    }
+}
+// Gọi hàm ngay khi bắt đầu
+createDeco();
     // 1. Loading Screen (Giả lập loading 2s)
     setTimeout(() => {
         progress.style.width = '100%';
